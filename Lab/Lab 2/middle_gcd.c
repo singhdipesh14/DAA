@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int isPrime(int n)
+int isPrime(int n, int *count)
 {
   int result = 1;
   for (int i = 2; i < n / 2; i++)
   {
+    (*count)++;
     if (n % i == 0)
     {
       result = 0;
@@ -24,8 +25,7 @@ int pf(int a, int arr[], int *count)
   cnt++;
   while (i <= a)
   {
-    (*count)++;
-    if (isPrime(i))
+    if (isPrime(i, count))
     {
       if (a % i == 0)
       {
