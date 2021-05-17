@@ -32,9 +32,9 @@ int bubbleSort(int arr[], int n)
 	{
 		for (int j = 0; j < n - i - 1; j++)
 		{
-			cnt++;
 			if (arr[j] > arr[j + 1])
 			{
+				cnt++;
 				swap(arr, j, j + 1);
 			}
 		}
