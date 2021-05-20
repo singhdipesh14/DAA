@@ -108,7 +108,8 @@ void dfs(int **matrix, int num, int **Stack, int *top, int *capacity)
 	int flag, ele;
 	while (1)
 	{
-		if(!(isEmpty(*top))){
+		if (!(isEmpty(*top)))
+		{
 			flag = 0;
 			for (int i = 0; i < num; i++)
 			{
@@ -134,10 +135,13 @@ void dfs(int **matrix, int num, int **Stack, int *top, int *capacity)
 			}
 			cur = (*Stack)[*top];
 		}
-		else{
+		else
+		{
 			flag = 1;
-			for (int i = 0; i < num && flag; i++){
-				if(visited[i]==0){
+			for (int i = 0; i < num && flag; i++)
+			{
+				if (visited[i] == 0)
+				{
 					visited[i] = 1;
 					printf("pushed : %d\n", i);
 					p = (char)('0' + i);
@@ -149,11 +153,11 @@ void dfs(int **matrix, int num, int **Stack, int *top, int *capacity)
 					break;
 				}
 			}
-			if(flag == 1){
+			if (flag == 1)
+			{
 				break;
 			}
 		}
-		
 	}
 	while (!(isEmpty(*top)))
 	{
