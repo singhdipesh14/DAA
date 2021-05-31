@@ -213,11 +213,11 @@ int main()
 	insertEdgeM(matrix, 2, 3);
 	insertEdgeM(matrix, 3, 6);
 	insertEdgeM(matrix, 6, 4);
-	insertEdgeM(matrix, 6, 0);
+	insertEdgeM(matrix, 4, 0);
 	insertEdgeM(matrix, 5, 1);
 	insertEdgeM(matrix, 5, 2);
-	insertEdgeM(matrix, 5, 6);
 	insertEdgeM(matrix, 5, 4);
+	insertEdgeM(matrix, 5, 6);
 	displayMatrix(matrix, num);
 	int top = -1, capacity = 2;
 	int *Stack = (int *)calloc(capacity, sizeof(int));

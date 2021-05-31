@@ -91,7 +91,7 @@ void topo(int **matrix, int num)
 
 int main()
 {
-	int num = 6;
+	int num = 7;
 	int **matrix = (int **)calloc(num, sizeof(int *));
 	for (int i = 0; i < num; i++)
 	{
@@ -101,14 +101,16 @@ int main()
 			matrix[i][j] = 0;
 		}
 	}
-	insertEdgeM(matrix, 0, 2);
-	insertEdgeM(matrix, 0, 3);
-	insertEdgeM(matrix, 1, 3);
-	insertEdgeM(matrix, 1, 4);
+	insertEdgeM(matrix, 0, 1);
+	insertEdgeM(matrix, 1, 2);
 	insertEdgeM(matrix, 2, 3);
-	insertEdgeM(matrix, 2, 5);
-	insertEdgeM(matrix, 3, 5);
-	insertEdgeM(matrix, 4, 5);
+	insertEdgeM(matrix, 3, 6);
+	insertEdgeM(matrix, 6, 4);
+	insertEdgeM(matrix, 4, 0);
+	insertEdgeM(matrix, 5, 1);
+	insertEdgeM(matrix, 5, 2);
+	insertEdgeM(matrix, 5, 4);
+	insertEdgeM(matrix, 5, 6);
 	displayMatrix(matrix, num);
 	topo(matrix, num);
 	return 0;
