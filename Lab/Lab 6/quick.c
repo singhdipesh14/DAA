@@ -8,7 +8,7 @@ void swap(int *arr, int i, int j)
 	arr[j] = temp;
 }
 
-int partition(int *arr, int left, int right)
+int partition(int *arr, int left, int right, int *opcount)
 {
 	int start = left + 1;
 	int pivot = left;
@@ -17,12 +17,16 @@ int partition(int *arr, int left, int right)
 	{
 		while (arr[start] <= arr[pivot])
 		{
+			(*opcount)++;
 			start++;
 		}
+		(*opcount)++;
 		while (arr[end] > arr[pivot])
 		{
+			(*opcount)++;
 			end--;
 		}
+		(*opcount)++;
 		if (start >= end)
 		{
 			break;
@@ -33,14 +37,13 @@ int partition(int *arr, int left, int right)
 	return end;
 }
 
-void quick(int *arr, int left, int right)
+void quick(int *arr, int left, int right, int *opcount)
 {
 	if (left < right)
 	{
-		int part = partition(arr, left, right);
-		printf("left -> %d right -> %d split -> %d\n", left, right, part);
-		quick(arr, left, part - 1);
-		quick(arr, part + 1, right);
+		int part = partition(arr, left, right, opcount);
+		quick(arr, left, part - 1, opcount);
+		quick(arr, part + 1, right, opcount);
 	}
 }
 
@@ -61,12 +64,13 @@ int main()
 		printf("%d ", arr[i]);
 	}
 	printf("\n");
-	quick(arr, 0, num - 1);
+	int opcount = 0;
+	quick(arr, 0, num - 1, &opcount);
 	printf("Your sorted array is : ");
 	for (int i = 0; i < num; i++)
 	{
 		printf("%d ", arr[i]);
 	}
-	printf("\n");
+	printf("\nThe number of operations is  : %d\n", opcount);
 	return 0;
 }

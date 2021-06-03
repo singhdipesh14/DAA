@@ -39,11 +39,12 @@ Node insert()
 	return n;
 }
 
-int cnt(Node head)
+int cnt(Node head, int *opcount)
 {
+	(*opcount)++;
 	if (head)
 	{
-		return 1 + cnt(head->right) + cnt(head->left);
+		return 1 + cnt(head->right, opcount) + cnt(head->left, opcount);
 	}
 	return 0;
 }
@@ -53,7 +54,8 @@ int main()
 	Node head = insert();
 	printf("The inorder is : ");
 	inorder(head);
-	int res = cnt(head);
-	printf("\nThe number of nodes is : %d\n", res);
+	int opcount = 0;
+	int res = cnt(head, &opcount);
+	printf("\nThe number of nodes is : %d and the number of operations is : %d\n", res, opcount);
 	return 0;
 }

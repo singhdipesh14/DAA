@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void merge(int *arr, int start, int end, int mid)
+void merge(int *arr, int start, int end, int mid, int *opcount)
 {
 	int anum = mid - start + 1;
 	int bnum = end - mid;
@@ -17,6 +17,7 @@ void merge(int *arr, int start, int end, int mid)
 	int i = 0, j = 0, k = start;
 	while (i < anum && j < bnum)
 	{
+		(*opcount)++;
 		if (a[i] < b[j])
 		{
 			arr[k] = a[i];
@@ -42,14 +43,14 @@ void merge(int *arr, int start, int end, int mid)
 		k++;
 	}
 }
-void mergeSort(int *arr, int start, int end)
+void mergeSort(int *arr, int start, int end, int *opcount)
 {
 	if (start < end)
 	{
 		int mid = start + (end - start) / 2;
-		mergeSort(arr, start, mid);
-		mergeSort(arr, mid + 1, end);
-		merge(arr, start, end, mid);
+		mergeSort(arr, start, mid, opcount);
+		mergeSort(arr, mid + 1, end, opcount);
+		merge(arr, start, end, mid, opcount);
 	}
 }
 
@@ -70,12 +71,13 @@ int main()
 		printf("%d ", arr[i]);
 	}
 	printf("\n");
-	mergeSort(arr, 0, num - 1);
+	int opcount = 0;
+	mergeSort(arr, 0, num - 1, &opcount);
 	printf("Your sorted array is : ");
 	for (int i = 0; i < num; i++)
 	{
 		printf("%d ", arr[i]);
 	}
-	printf("\n");
+	printf("\nThe number of operations are : %d\n", opcount);
 	return 0;
 }
